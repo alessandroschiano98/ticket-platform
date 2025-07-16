@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="~{fragments/head :: head('Tickets')}" />
+
+<body>
+    <header>
+        <nav th:replace="~{fragments/navbar :: navbar('Ticket Platform')}" />
+    </header>
+    
+    <main class="container">
+        <section class="title row">
+            <div class="col-12">
+                <h1 class="text-center fw-bold mb-3">
+                    Tickets
+                </h1>
+            </div>
+        </section>
+    </main>
+
+
+
+    <th:block th:replace="~{fragments/footerbar :: scripts}">
+        <!-- Scripts -->
+    </th:block>
+</body>
+
+</html>
