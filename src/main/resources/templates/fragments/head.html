@@ -1,10 +1,13 @@
-<th-block th:fragment="head(pageTitle)">
+<th:block th:fragment="head(title)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[[${pageTitle}]]</title>
+    <title>[[${title}]]</title>
     
-    <!-- Bootstrap CSS -->
+    <!-- ! Bootstrap CSS -->
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
-    <!-- Custom CSS -->
+    <!-- ! Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
-</th-block>
+    <!-- ! Link Font CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&family=Fredoka:wght@300..700&family=Oswald:wght@200..700&family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+</th:block>

@@ -26,9 +26,20 @@ public class TicketController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable(name = "id") Integer id, Model model) {
-        Ticket ticket = ticketRepository.findById(id).get();
-        model.addAttribute("ticket", ticket);
+        model.addAttribute("tickets", ticketRepository.findById(id).get());
         return "tickets/show";
+    }
+
+    @GetMapping("/create") // ! ...com/tickets/create
+    public String create(Model model){
+        model.addAttribute("ticket", new Ticket());
+        return "tickets/create";
+    }
+
+    @GetMapping("/edit") // ! ...com/tickets/edit
+    public String edit(@PathVariable("id") Integer id, Model model){
+        model.addAttribute("tickets", ticketRepository.findById(id).get());
+        return "tickets/edit";
     }
 
 }
