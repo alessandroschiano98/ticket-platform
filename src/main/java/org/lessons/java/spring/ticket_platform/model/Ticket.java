@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -35,11 +34,6 @@ public class Ticket {
     // ! OPERATOR
     @NotNull(message = "A ticket must be assigned to an operator")
     private String operator;
-
-    // ! NOTES
-    @Lob
-    @Size(max = 2000, message = "Notes cannot be longer than 2000 characters")
-    private String notes;
 
     public Integer getId() {
         return this.id;
@@ -81,12 +75,5 @@ public class Ticket {
         this.operator = operator;
     }
 
-    public String getNotes() {
-        return this.notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
 
 }

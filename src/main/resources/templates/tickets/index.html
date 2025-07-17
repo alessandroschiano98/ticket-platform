@@ -13,7 +13,6 @@
             <h1><strong>Tickets</strong></h1>
 
             <div class="search-box">
-                <label>Search <strong>Tickets</strong>:</label><br>
                 <input type="text" placeholder="Search for Title">
                 <input type="text" placeholder="Category">
                 <select>
@@ -22,19 +21,18 @@
                     <option>In Progress</option>
                     <option>Completed</option>
                 </select>
-                <button>Create New Ticket</button>
+                <a th:href="@{/tickets/create}" class="btn btn-primary">Create new ticket</a>
             </div>
 
             <section class="tickets">
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>Title</th>
                             <th>Category</th>
                             <th>Status</th>
                             <th>Operator</th>
-                            <th>Notes</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -45,10 +43,10 @@
                             <td>[[*{category}]]</td>
                             <td>[[*{status}]]</td>
                             <td>[[*{operator}]]</td>
-                            <td>[[*{notes}]]</td>
                             <td>
                                 <button class="view-btn">👁️</button>
-                                <button class="edit-btn">📋</button>
+                                <button class="edit-btn">🛠️</button>
+                                <button class="notes-btn">✒️​</button>
                             </td>
                         </tr>
                     </tbody>

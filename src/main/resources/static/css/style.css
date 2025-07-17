@@ -9,7 +9,7 @@ h1 {
 }
 
 .containerhomepagecenterhome {
-    background-color: #e5e7eb;
+    background-color: #ffffff;
     margin: 0;
     padding: 55px;
 
@@ -26,6 +26,11 @@ h1 {
 }
 
 
+.clickherelink {
+    color: black;
+    text-align: center;
+    text-decoration:none;
+}
 
 .ticketplatformtitle {
     font-family: "Special Gothic Expanded One", sans-serif;
@@ -43,6 +48,7 @@ h1 {
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 20px;
+    
 }
 
 input, select {
@@ -66,12 +72,12 @@ table {
     width: 100%;
     border-collapse: collapse;
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
+
 }
 
 th, td {
     padding: 8px;
-    border-bottom: 1px solid #e5e7eb;
     text-align: left;
 }
 
@@ -97,9 +103,11 @@ th, td {
     color: #374151;
 }
 
+.notes-btn,
 .view-btn,
 .edit-btn {
-    background: transparent;
-    border: none;
-    font-size: 18px;
+    background:transparent;
+    border: 1px;
+    border-color: lightgrey;
+    font-size: 17px;
 }
