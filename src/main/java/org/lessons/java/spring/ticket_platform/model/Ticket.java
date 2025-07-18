@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,27 +14,24 @@ import jakarta.validation.constraints.Size;
 @Table(name = "tickets")
 public class Ticket {
 
-    // ! ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // ! TITLE
-    @NotBlank(message = " The title is mandatory and must be present")
-    @Size(min = 1, message = "Title must have at least one characters")
+    @NotBlank(message = "The title is mandatory and must be present")
+    @Size(min = 1, message = "Title must have at least one character")
     private String title;
 
-    // ! CATEGORY
-    @NotNull(message = " It is mandatory to select a category")
-    private String category;
+    @NotNull(message = "It is mandatory to select a category")
+    @ManyToOne
+    private Category category;
 
-    // ! STATUS
     @NotNull(message = "Every ticket must have a valid status")
     private String status;
 
-    // ! OPERATOR
     @NotNull(message = "A ticket must be assigned to an operator")
     private String operator;
+
 
     public Integer getId() {
         return this.id;
@@ -51,11 +49,11 @@ public class Ticket {
         this.title = title;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return this.category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -74,6 +72,5 @@ public class Ticket {
     public void setOperator(String operator) {
         this.operator = operator;
     }
-
 
 }

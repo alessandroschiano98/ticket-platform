@@ -13,15 +13,18 @@
             <h1><strong>Tickets</strong></h1>
 
             <div class="search-box">
-                <input type="text" placeholder="Search for Title">
-                <input type="text" placeholder="Category">
-                <select>
-                    <option>Status</option>
-                    <option>To do</option>
-                    <option>In Progress</option>
-                    <option>Completed</option>
-                </select>
-                <a th:href="@{/tickets/create}" class="btn btn-primary">Create new ticket</a>
+                <form action="#" th:action="@{/tickets}" method="get">
+                    <select name="status">
+                        <option value="TODO">To Do</option>
+                        <option value="IN_PROGRESS">In Progress</option>
+                        <option value="CLOSED">Closed</option>
+
+                    </select>
+
+                    <input type="text" name="search" placeholder="Search by title..." th:value="${search}" />
+
+                    <a th:href="@{/tickets/create}" class="btn btn-primary">Create new ticket</a>
+                </form>
             </div>
 
             <section class="tickets">
@@ -40,7 +43,7 @@
                         <tr th:each="ticket : ${tickets}" th:object="${ticket}">
                             <td>[[*{id}]]</td>
                             <td>[[*{title}]]</td>
-                            <td>[[*{category}]]</td>
+                            <td th:text="${ticket.category != null} ? ${ticket.category.name} : 'None'"></td>
                             <td>[[*{status}]]</td>
                             <td>[[*{operator}]]</td>
                             <td>
@@ -51,6 +54,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <h2 class="text-center text-primary" th:unless="${tickets.size() > 0}">
+                    There are no tickets available at this moment
+                </h2>
             </section>
         </div>
     </main>
