@@ -50,20 +50,18 @@
                                 <section class="buttonsbox">
                                     <!-- ! DETAILS -->
                                     <a th:href="@{/tickets/{id}(id=${ticket.id})}">
-                                        <img src="https://img.icons8.com/?size=100&id=100039&format=png&color=000000"
-                                            alt="Details icon" class="index-btn" />
+                                        <i class="fa fa-info-circle"></i>
                                     </a>
 
                                     <!-- ! EDIT -->
-                                    <a th:href="@{/tickets/edit/{id}(id=${ticket.id})}" title="Edit">
-                                        <img src="https://img.icons8.com/?size=100&id=15042&format=png&color=000000"
-                                            alt="Edit icon" class="index-btn" />
+                                    <a th:href="@{/tickets/edit/{id}(id=${ticket.id})}">
+                                        <i class="fas fa-edit"></i>
                                     </a>
 
-                                    <!-- ! NOTES opens modal -->
+                                    <!-- ! NOTE (opens modal) -->
                                     <button type="button" data-bs-toggle="modal"
-                                        th:data-bs-target="'#note-modal-' + ${ticket.id}" class="btn-note">
-                                        🖊️
+                                        th:data-bs-target="'#note-modal-' + ${ticket.id}">
+                                        <i class="fas fa-keyboard"></i>
                                     </button>
 
                                     <!-- ! MODAL(NOTES)  -->
@@ -100,10 +98,9 @@
                                         </div>
 
                                         <!-- ! DELETE opens modal -->
-                                        <button type="button" data-bs-toggle="modal"
-                                            th:data-bs-target="'#delete-modal-' + ${ticket.id}" class="delete-btn">
-                                            <img src="https://img.icons8.com/?size=100&id=99950&format=png&color=000000"
-                                                alt="Delete icon" class="index-btn" />
+                                        <button data-bs-toggle="modal"
+                                            th:data-bs-target="'#delete-modal-' + ${ticket.id}">
+                                            <i class='fas fa-keyboard button'></i>
                                         </button>
 
                                         <!-- ! MODAL(DELETE) -->

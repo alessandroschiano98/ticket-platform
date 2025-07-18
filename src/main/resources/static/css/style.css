@@ -58,14 +58,21 @@ input, select {
     border-radius: 4px;
 }
 
-button {
-    background-color: #2563eb;
-    color: white;
-    padding:5px 15px;
-    border: none;
-    border-radius: 6px;
+button i,
+a i {
+    font-size: 20px;      
+    color: black;         
+    margin: 0 6px;         
     cursor: pointer;
-    margin-left: 5px;
+}
+
+button {
+    display: inline;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
 }
 
 table {
