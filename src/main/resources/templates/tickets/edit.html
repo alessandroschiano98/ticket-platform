@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="~{fragments/head :: head('Tickets')}"></head>
+
+<body>
+    <header>
+        <nav th:replace="~{fragments/navbar :: navbar('Ticket Platform')}"></nav>
+    </header>
+
+    <main>
+        <div class="containerhomepagecenter">
+            <h1><strong>Editing Ticket</strong></h1>
+
+            <div class="search-box">
+                <form th:action="@{/tickets/save}" th:object="${ticket}" method="post">
+                    <label for="title">Title</label>
+                    <input id="title" type="text" th:field="*{title}" placeholder="Title" />
+
+                    <label for="category">Category</label>
+                    <select id="category" th:field="*{category}">
+                        <option value="" disabled selected>Select Category</option>
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                    </select>
+
+                    <label for="status">Status</label>
+                    <select id="status" th:field="*{status}">
+                        <option value="" disabled selected>Select Status</option>
+                        <option value="to_do">To Do</option>
+                        <option value="working">Working</option>
+                        <option value="completed">Completed</option>
+                    </select>
+
+                    <button type="submit" class="save-btn">Save</button>
+                    <a th:href="@{/tickets}" class = "back-btn">Back</a>
+                </form>
+
+
+
+            </div>
+
+
+        </div>
+    </main>
+
+    <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
+</body>
+
+</html>

@@ -23,7 +23,7 @@
 
                     <input type="text" name="search" placeholder="Search by title..." th:value="${search}" />
 
-                    <a th:href="@{/tickets/create}" class="btn btn-primary">Create new ticket</a>
+                    <a th:href="@{/tickets/create}" class="save-btn">Create new ticket</a>
                 </form>
             </div>
 
@@ -47,9 +47,97 @@
                             <td>[[*{status}]]</td>
                             <td>[[*{operator}]]</td>
                             <td>
-                                <button class="view-btn">👁️</button>
-                                <button class="edit-btn">🛠️</button>
-                                <button class="notes-btn">✒️​</button>
+                                <section class="buttonsbox">
+                                    <!-- ! DETAILS -->
+                                    <a th:href="@{/tickets/{id}(id=${ticket.id})}">
+                                        <img src="https://img.icons8.com/?size=100&id=100039&format=png&color=000000"
+                                            alt="Details icon" class="index-btn" />
+                                    </a>
+
+                                    <!-- ! EDIT -->
+                                    <a th:href="@{/tickets/edit/{id}(id=${ticket.id})}" title="Edit">
+                                        <img src="https://img.icons8.com/?size=100&id=15042&format=png&color=000000"
+                                            alt="Edit icon" class="index-btn" />
+                                    </a>
+
+                                    <!-- ! NOTES opens modal -->
+                                    <button type="button" data-bs-toggle="modal"
+                                        th:data-bs-target="'#note-modal-' + ${ticket.id}" class="btn-note">
+                                        🖊️
+                                    </button>
+
+                                    <!-- ! MODAL(NOTES)  -->
+                                    <div class="modal fade" th:id="'note-modal-' + ${ticket.id}"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                        aria-labelledby="noteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Add Note for Ticket [[${ticket.id}]]</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form th:action="@{/tickets/{id}/note(id=${ticket.id})}"
+                                                        method="post">
+                                                        <div class="mb-3">
+                                                            <label for="note-textarea" class="form-label">Your
+                                                                Note</label>
+                                                            <textarea id="note-textarea" name="note"
+                                                                class="form-control"
+                                                                placeholder="Write your note here..."
+                                                                rows="4"></textarea>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-primary">Save
+                                                                Note</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- ! DELETE opens modal -->
+                                        <button type="button" data-bs-toggle="modal"
+                                            th:data-bs-target="'#delete-modal-' + ${ticket.id}" class="delete-btn">
+                                            <img src="https://img.icons8.com/?size=100&id=99950&format=png&color=000000"
+                                                alt="Delete icon" class="index-btn" />
+                                        </button>
+
+                                        <!-- ! MODAL(DELETE) -->
+                                        <div class="modal fade" th:id="'delete-modal-' + ${ticket.id}"
+                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                                            Deleting <strong>"[[${ticket.title}]]"</strong>
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>
+                                                            Are you sure to eliminate this ticket?
+                                                            <strong>"[[${ticket.title}]]"</strong> (ID:
+                                                            [[${ticket.id}]])
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <form th:action="@{/tickets/{id}/delete(id=${ticket.id})}"
+                                                            method="post" class="d-inline">
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </section>
                             </td>
                         </tr>
                     </tbody>

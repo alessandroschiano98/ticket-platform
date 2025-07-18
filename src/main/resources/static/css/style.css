@@ -103,11 +103,60 @@ th, td {
     color: #374151;
 }
 
+.index-btn {
+    width: 25px;
+    height: 25px;
+    filter: brightness(0%) invert(0%);
+}
+
+.save-btn {
+    background-color: #3330ee;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px
+
+}
+
+.reset-btn {
+    background-color: #ffa42c;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px
+
+}
+
+
+.back-btn {
+        background-color: #04AA6D;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px
+
+}
+
 .notes-btn,
-.view-btn,
-.edit-btn {
+.view-btn
+{
+    outline: none;
     background:transparent;
-    border: 1px;
+    border: none;
+    padding: 5px 15px;
     border-color: lightgrey;
-    font-size: 17px;
+    border-radius: 12px
+    
 }
