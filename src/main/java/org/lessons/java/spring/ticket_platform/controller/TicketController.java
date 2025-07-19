@@ -1,7 +1,6 @@
 package org.lessons.java.spring.ticket_platform.controller;
 
 import org.lessons.java.spring.ticket_platform.model.Ticket;
-import org.lessons.java.spring.ticket_platform.model.User;
 import org.lessons.java.spring.ticket_platform.repository.TicketRepository;
 import org.lessons.java.spring.ticket_platform.repository.UserRepository;
 import org.lessons.java.spring.ticket_platform.repository.CategoryRepository;
@@ -56,16 +55,19 @@ public class TicketController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("ticket", new Ticket());
-        List<User> operators = userRepository.findByRolesNameIn(List.of("ADMIN", "OPERATOR"));
-        model.addAttribute("operators", operators);
+        model.addAttribute("operators", userRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll()); // <-- aggiunto
         return "tickets/create";
     }
+    
 
     @PostMapping("/create")
     public String store(@Valid @ModelAttribute("ticket") Ticket formTicket, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("category", categoryRepository.findAll());
+            model.addAttribute("operators", userRepository.findAll());
+            model.addAttribute("categories", categoryRepository.findAll());
+            
             return "/tickets/create";
         }
 
@@ -80,6 +82,7 @@ public class TicketController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found"));
         model.addAttribute("ticket", ticket);
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("operators", userRepository.findAll());
         return "tickets/edit";
     }
 
@@ -89,6 +92,7 @@ public class TicketController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", categoryRepository.findAll());
+            model.addAttribute("operators", userRepository.findAll());
             return "/ticket/edit";
         }
         ticketRepository.save(formTicket);
@@ -104,6 +108,7 @@ public class TicketController {
         }
 
         ticketRepository.save(formTicket);
+
         return "redirect:/tickets";
     }
 

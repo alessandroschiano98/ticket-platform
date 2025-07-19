@@ -28,19 +28,24 @@
                         <option value="closed">Closed</option>
                     </select>
 
-                    <label for="problemType">Category:</label>
-                    <select id="problemType" th:field="*{category}">
-                        <option value="1">Software</option>
-                        <option value="2">Hardware</option>
-                        <option value="3">Network</option>
+                    <label for="category">Category:</label>
+                    <select id="category" th:field="*{category}">
+                        <option value="" disabled selected>Select Category</option>
+                        <option th:each="category : ${categories}" 
+                                th:value="${category.id}" 
+                                th:text="${category.name}">
+                        </option>
                     </select>
 
                     <label for="operator">Operator:</label>
                     <select id="operator" th:field="*{operator}">
-                        <select id="problemType" th:field="*{category}">
-
-                        </select>
+                        <option value="" disabled selected>Select Operator</option>
+                        <option th:each="operator : ${operators}" 
+                                th:value="${operator.id}" 
+                                th:text="${operator.fullName}">
+                        </option>
                     </select>
+                    
 
                     <button type="submit" class="save-btn">Done</button>
                     <button type="reset" class= "reset-btn">Reset</button>

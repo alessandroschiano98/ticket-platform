@@ -44,8 +44,12 @@
                             <td>[[*{id}]]</td>
                             <td>[[*{title}]]</td>
                             <td th:text="${ticket.category != null} ? ${ticket.category.name} : 'None'"></td>
-                            <td>[[*{status}]]</td>
-                            <td>[[*{operator}]]</td>
+                            <td class="badge" th:switch="${ticket.status}">
+                                <span th:case="'todo'" class="todo">[[${ticket.status}]]</span>
+                                <span th:case="'inprogress'" class="inprogress">[[${ticket.status}]]</span>
+                                <span th:case="'closed'" class="closed">[[${ticket.status}]]</span>
+                            </td>
+                            <td th:text="${ticket.operator != null} ? ${ticket.operator.fullName} : 'None'"></td>
                             <td>
                                 <section class="buttonsbox">
                                     <!-- ! DETAILS -->

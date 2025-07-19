@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -30,8 +31,9 @@ public class Ticket {
     private String status;
 
     @NotNull(message = "A ticket must be assigned to an operator")
-    private String operator;
-
+    @ManyToOne
+    @JoinColumn(name = "operator_id", nullable = false)
+    private User operator;
 
     public Integer getId() {
         return this.id;
@@ -65,12 +67,14 @@ public class Ticket {
         this.status = status;
     }
 
-    public String getOperator() {
+
+    public User getOperator() {
         return this.operator;
     }
 
-    public void setOperator(String operator) {
+    public void setOperator(User operator) {
         this.operator = operator;
     }
+
 
 }

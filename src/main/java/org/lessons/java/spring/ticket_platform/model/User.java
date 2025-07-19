@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -27,9 +26,8 @@ public class User {
     @NotBlank(message = "Password cannot be null, empty or blank")
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "operator_id")
-    private User operator;
+    @NotBlank(message = "Full name cannot be null, empty or blank")
+    private String fullName;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -67,12 +65,14 @@ public class User {
         this.password = password;
     }
 
-    public User getOperator() {
-        return this.operator;
+
+    public String getFullName() {
+        return this.fullName;
     }
 
-    public void setOperator(User operator) {
-        this.operator = operator;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
+
 
 }
