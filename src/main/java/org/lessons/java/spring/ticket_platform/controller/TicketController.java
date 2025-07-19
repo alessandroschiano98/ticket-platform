@@ -1,7 +1,9 @@
 package org.lessons.java.spring.ticket_platform.controller;
 
 import org.lessons.java.spring.ticket_platform.model.Ticket;
+import org.lessons.java.spring.ticket_platform.model.User;
 import org.lessons.java.spring.ticket_platform.repository.TicketRepository;
+import org.lessons.java.spring.ticket_platform.repository.UserRepository;
 import org.lessons.java.spring.ticket_platform.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,9 @@ public class TicketController {
     @Autowired
     private TicketRepository ticketRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     TicketController(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
@@ -36,7 +41,8 @@ public class TicketController {
     public String index(Model model) {
         List<Ticket> tickets = ticketRepository.findAll();
         model.addAttribute("tickets", tickets);
-        model.addAttribute("ticket", new Ticket()); // Se hai form nella pagina index
+        model.addAttribute("ticket", new Ticket());
+
         return "tickets/index";
     }
 
@@ -50,6 +56,8 @@ public class TicketController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("ticket", new Ticket());
+        List<User> operators = userRepository.findByRolesNameIn(List.of("ADMIN", "OPERATOR"));
+        model.addAttribute("operators", operators);
         return "tickets/create";
     }
 
@@ -71,23 +79,42 @@ public class TicketController {
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found"));
         model.addAttribute("ticket", ticket);
-        model.addAttribute("category", categoryRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "tickets/edit";
     }
 
+    @PostMapping("/edit/{id}")
+    public String update(@PathVariable("id") Integer id, @Valid @ModelAttribute("ticket") Ticket formTicket,
+            BindingResult bindingResult, Model model) {
 
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
+            return "/ticket/edit";
+        }
+        ticketRepository.save(formTicket);
 
+        return "redirect:/tickets";
+    }
 
-
-    
     @PostMapping("/save")
     public String save(@Valid @ModelAttribute("ticket") Ticket formTicket, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("category", categoryRepository.findAll());
+            model.addAttribute("categories", categoryRepository.findAll());
             return "tickets/edit";
         }
 
         ticketRepository.save(formTicket);
         return "redirect:/tickets";
     }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Integer id, Model model) {
+
+        Ticket ticketToDelete = ticketRepository.findById(id).get();
+
+        ticketRepository.delete(ticketToDelete);
+
+        return "redirect:/tickets";
+    }
+
 }

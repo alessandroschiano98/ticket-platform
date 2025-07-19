@@ -23,9 +23,9 @@
 
                     <label for="status">Status:</label>
                     <select id="status" th:field="*{status}">
-                        <option value="TODO">To do</option>
-                        <option value="IN_PROGRESS">In Progress</option>
-                        <option value="CLOSED">Closed</option>
+                        <option value= "todo">To do</option>
+                        <option value="inprogress">In Progress</option>
+                        <option value="closed">Closed</option>
                     </select>
 
                     <label for="problemType">Category:</label>
@@ -44,6 +44,7 @@
 
                     <button type="submit" class="save-btn">Done</button>
                     <button type="reset" class= "reset-btn">Reset</button>
+                    <a th:href="@{/tickets}" class = "back-btn">Back</a>
                 </form>
         </div>
     </main>

@@ -52,7 +52,6 @@ public class CategoryController {
             return "categories/create";
         }
 
-        // ! creare la nostra categoria su db
         categoryRepository.save(formCategory);
 
         return "redirect:/categories";
@@ -72,7 +71,6 @@ public class CategoryController {
             return "categories/edit";
         }
 
-        // ! creare la nostra categoria su db
         categoryRepository.save(formCategory);
 
         return "redirect:/categories";
@@ -80,15 +78,16 @@ public class CategoryController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        return categoryRepository.findById(id)
-                .map(categoryToDelete -> {
-                    for (Ticket linkedTicket : categoryToDelete.getTickets()) {
-                        linkedTicket.setCategory(null);
-                        ticketRepository.save(linkedTicket);
-                    }
-                    categoryRepository.delete(categoryToDelete);
-                    return "redirect:/categories";
-                }).orElse("errors/404");
+        Category categoryToDelete = categoryRepository.findById(id).get();
+
+        for (Ticket linkedTicket : categoryToDelete.getTickets()) {
+            linkedTicket.setCategory(null);
+            ticketRepository.save(linkedTicket);
+        }
+
+        categoryRepository.deleteById(id);
+
+        return "redirect:/categories";
     }
 
 }
