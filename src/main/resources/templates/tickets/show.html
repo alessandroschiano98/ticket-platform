@@ -9,16 +9,40 @@
     </header>
 
     <main>
-        <div class="containerhomepagecenterhome">
+        <div class="containerhomepagecentershow">
+
+            <h1 class="mb-4"><strong>Ticket Details</strong></h1>
+
+            <div class="d-flex justify-content-center align-items-center">
+
+                <div class="card shadow p-4">
+                    <h5 class="mb-3 fw-bold">Title:</h5>
+                    <span class="mb-3" aria-disabled="true" th:text="${ticket.title}"></span>
 
 
+                    <h5 class="mb-3 fw-bold">Operator:</h5>
+                    <span class="mb-3 btn btn-primary" aria-disabled="true"
+                        th:text="${ticket.operator.fullName}"></span>
+
+                    <h5 class="mb-3 fw-bold">Status:</h5>
+                    <span class="mb-3" th:switch="${ticket.status}">
+                        <span th:case="todo" class="badge todo" style="font-size:17px;">To Do</span>
+                        <span th:case="inprogress" class="badge inprogress" style="font-size:17px">In Progress</span>
+                        <span th:case="closed" class="badge closed" style="font-size:17px">Closed</span>
+                    </span>
 
 
-            
+                    <div class="mt-4">
+                        <a th:href="@{/tickets}" class="btn btn-secondary">Back in List</a>
+                    </div>
+
+                </div>
+            </div>
 
         </div>
     </main>
 
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
     <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
 </body>
 

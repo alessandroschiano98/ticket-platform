@@ -23,7 +23,7 @@
 
                     <label for="status">Status:</label>
                     <select id="status" th:field="*{status}">
-                        <option value= "todo">To do</option>
+                        <option value="todo">To do</option>
                         <option value="inprogress">In Progress</option>
                         <option value="closed">Closed</option>
                     </select>
@@ -31,29 +31,27 @@
                     <label for="category">Category:</label>
                     <select id="category" th:field="*{category}">
                         <option value="" disabled selected>Select Category</option>
-                        <option th:each="category : ${categories}" 
-                                th:value="${category.id}" 
-                                th:text="${category.name}">
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
                         </option>
                     </select>
 
                     <label for="operator">Operator:</label>
                     <select id="operator" th:field="*{operator}">
                         <option value="" disabled selected>Select Operator</option>
-                        <option th:each="operator : ${operators}" 
-                                th:value="${operator.id}" 
-                                th:text="${operator.fullName}">
+                        <option th:each="operator : ${operators}" th:value="${operator.id}"
+                            th:text="${operator.fullName}">
                         </option>
                     </select>
-                    
+
 
                     <button type="submit" class="save-btn">Done</button>
-                    <button type="reset" class= "reset-btn">Reset</button>
-                    <a th:href="@{/tickets}" class = "back-btn">Back</a>
+                    <button type="reset" class="reset-btn">Reset</button>
+                    <a th:href="@{/tickets}" class="back-btn">Back</a>
                 </form>
         </div>
     </main>
 
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
     <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
 </body>
 

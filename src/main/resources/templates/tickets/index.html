@@ -13,16 +13,18 @@
             <h1><strong>Tickets</strong></h1>
 
             <div class="search-box">
+                <!-- ! INSERT STATUS'S TYPE OF TICKET -->
                 <form action="#" th:action="@{/tickets}" method="get">
                     <select name="status">
-                        <option value="TODO">To Do</option>
-                        <option value="IN_PROGRESS">In Progress</option>
-                        <option value="CLOSED">Closed</option>
+                        <option value="badge todo">To Do</option>
+                        <option value="badge inprogress">In Progress</option>
+                        <option value="badge closed">Closed</option>
 
                     </select>
-
+                    <!-- ! SEARCH A TICKET BY TITLE -->
                     <input type="text" name="search" placeholder="Search by title..." th:value="${search}" />
-
+                    <button type="submit" class="search-btn">Search</button>
+                    <!-- ! CREATE NEW TICKET -->
                     <a th:href="@{/tickets/create}" class="save-btn">Create new ticket</a>
                 </form>
             </div>
@@ -44,10 +46,10 @@
                             <td>[[*{id}]]</td>
                             <td>[[*{title}]]</td>
                             <td th:text="${ticket.category != null} ? ${ticket.category.name} : 'None'"></td>
-                            <td class="badge" th:switch="${ticket.status}">
-                                <span th:case="'todo'" class="badge todo">[[${ticket.status}]]</span>
-                                <span th:case="'inprogress'" class="badge inprogress">[[${ticket.status}]]</span>
-                                <span th:case="'closed'" class="badge closed">[[${ticket.status}]]</span>
+                            <td class="#" th:switch="${ticket.status}">
+                                <span th:case="todo" class="badge todo">To Do</span>
+                                <span th:case="inprogress" class="badge inprogress">In Progress</span>
+                                <span th:case="closed" class="badge closed">Closed</span>
                             </td>
                             <td th:text="${ticket.operator != null} ? ${ticket.operator.fullName} : 'None'"></td>
                             <td>
@@ -94,7 +96,8 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Close</button>
-                                                        <form th:action="@{/tickets/delete/{id}(id=${ticket.id})}" method="post" class="d-inline">
+                                                    <form th:action="@{/tickets/delete/{id}(id=${ticket.id})}"
+                                                        method="post" class="d-inline">
                                                         <button type="submit" class="btn btn-danger">Delete</button>
                                                     </form>
                                                 </div>
@@ -185,7 +188,8 @@
             </section>
         </div>
     </main>
-
+    
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
     <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
 </body>
 
