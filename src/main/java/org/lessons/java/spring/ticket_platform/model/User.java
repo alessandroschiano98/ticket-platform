@@ -10,7 +10,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -29,6 +31,13 @@ public class User {
     @NotBlank(message = "Full name cannot be null, empty or blank")
     private String fullName;
 
+    @Email(message = "Email format is invalid")
+    @NotBlank(message = "Email cannot be null, empty or blank")
+    private String email;
+
+    @OneToMany(mappedBy = "operator")
+    private Set<Ticket> assignedTickets;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
@@ -39,6 +48,14 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Ticket> getAssignedTickets() {
+        return this.assignedTickets;
+    }
+
+    public void setAssignedTickets(Set<Ticket> assignedTickets) {
+        this.assignedTickets = assignedTickets;
     }
 
     public Integer getId() {
@@ -65,13 +82,21 @@ public class User {
         this.password = password;
     }
 
-
     public String getFullName() {
         return this.fullName;
     }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 

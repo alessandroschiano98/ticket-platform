@@ -9,7 +9,7 @@
     </header>
 
     <main>
-        <div class="containerhomepagecenter">
+        <div class="container mt-4">
             <h1><strong>Tickets</strong></h1>
 
             <div class="search-box">
@@ -182,6 +182,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="mt-2">
+                    <a th:href="@{/}" class="btn btn-secondary back-btn">Back</a>
+                </div>
                 <h2 class="text-center text-primary" th:unless="${tickets.size() > 0}">
                     There are no tickets available at this moment
                 </h2>

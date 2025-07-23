@@ -56,10 +56,9 @@ public class TicketController {
     public String create(Model model) {
         model.addAttribute("ticket", new Ticket());
         model.addAttribute("operators", userRepository.findAll());
-        model.addAttribute("categories", categoryRepository.findAll()); // <-- aggiunto
+        model.addAttribute("categories", categoryRepository.findAll());
         return "tickets/create";
     }
-    
 
     @PostMapping("/create")
     public String store(@Valid @ModelAttribute("ticket") Ticket formTicket, BindingResult bindingResult, Model model) {
@@ -67,7 +66,7 @@ public class TicketController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("operators", userRepository.findAll());
             model.addAttribute("categories", categoryRepository.findAll());
-            
+
             return "/tickets/create";
         }
 

@@ -9,30 +9,30 @@
     </header>
 
     <main>
-        <div class="containerhomepagecenter">
+        <div class="container mt-4">
             <h1><strong>Editing Ticket</strong></h1>
 
             <div class="search-box">
                 <form th:action="@{/tickets/save}" th:object="${ticket}" method="post">
                     <input type="hidden" th:field="*{id}" />
-                    <label for="title">Title</label>
+                    <label for="title"><strong>Title</strong></label>
                     <input id="title" type="text" th:field="*{title}" placeholder="Title" />
 
-                    <label for="category">Category</label>
+                    <label for="category"><strong>Category</strong></label>
                     <select id="category" th:field="*{category}">
                         <option value="" disabled selected>Select Category</option>
                         <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
                         </option>
                     </select>
 
-                    <label for="status">Status</label>
+                    <label for="status"><strong>Status</strong></label>
                     <select id="status" th:field="*{status}">
                         <option value="" disabled selected>Select Status</option>
                         <option value="todo">To Do</option>
                         <option value="inprogress">In Progress</option>
                         <option value="closed">Closed</option>
                     </select>
-                    <label for="operator">Operator</label>
+                    <label for="operator"><strong>Operator</strong></label>
                     <select id="operator" th:field="*{operator}">
                         <option value="" disabled selected>Select Operator</option>
                         <option th:each="op : ${operators}" th:value="${op.id}" th:text="${op.fullName}"></option>

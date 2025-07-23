@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Operators')}"></head>
+
+<body>
+    <header>
+        <nav th:replace="~{fragments/navbar :: navbar('Ticket Platform')}"></nav>
+    </header>
+
+    <div class="container mt-4 text-left">
+        <h1><strong>Operators's List</strong></h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="operator : ${operators}" th:object="${operator}">
+                    <td>[[*{id}]]</td>
+                    <td>[[*{fullName}]]</td>
+                    <td>[[*{email}]]</td>
+                    <td>
+                        <section class="buttonsbox">
+                            <!-- ! DETAILS -->
+                            <a class="buttons-box-icons" th:href="@{/operators/{id}(id=${operator.id})}">
+                                <img src="https://cdn-icons-png.flaticon.com/512/64/64572.png"
+                                    alt="Show info " width="18" />
+                            </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mt-2">
+            <a th:href="@{/}" class="btn btn-secondary back-btn">Back in Home</a>
+        </div>
+    </div>
+
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+    <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
+</body>
+
+</html>
