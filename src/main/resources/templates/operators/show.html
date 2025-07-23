@@ -10,8 +10,10 @@
 
     <div class="container mt-5">
         <h2><strong>Operator:</strong> <span th:text="${operator.fullName}"></span></h2>
-        <h4><strong>Availability:</strong><span th:text="${isAvailable} ? ' Yes ' : ' No '" th:classappend="${isAvailable} ? 'text-success' : 'text-danger'"></span></h4>
+        <h4><strong>Availability:</strong><span th:text="${isAvailable} ? ' Yes ' : ' No '"
+                th:classappend="${isAvailable} ? 'text-success' : 'text-danger'"></span></h4>
         <h3>Assigned Tickets:</h3>
+
         <table class="table">
             <thead>
                 <tr>
@@ -24,14 +26,22 @@
                 <tr th:each="ticket : ${operator.assignedTickets}">
                     <td th:text="${ticket.id}"></td>
                     <td th:text="${ticket.title}"></td>
-                    <td class="#" th:switch="${ticket.status}">
+                    <td th:switch="${ticket.status}">
                         <span th:case="todo" class="badge todo">To Do</span>
                         <span th:case="inprogress" class="badge inprogress">In Progress</span>
                         <span th:case="closed" class="badge closed">Closed</span>
                     </td>
                 </tr>
+
+                <tr th:if="${#lists.isEmpty(operator.assignedTickets)}">
+                    <td colspan="3" class="text-left fw-bold">
+                        There are no tickets assigned to this operator.
+                    </td>
+                </tr>
             </tbody>
         </table>
+
+
         <div class="mt-4">
             <a th:href="@{/operators}" class="btn btn-secondary back-btn">Back in List</a>
         </div>

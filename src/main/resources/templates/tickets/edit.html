@@ -12,7 +12,7 @@
         <div class="container mt-4">
             <h1><strong>Editing Ticket</strong></h1>
 
-            <div class="search-box">
+            <div class="search-box edit">
                 <form th:action="@{/tickets/save}" th:object="${ticket}" method="post">
                     <input type="hidden" th:field="*{id}" />
                     <label for="title"><strong>Title</strong></label>

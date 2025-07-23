@@ -5,7 +5,6 @@
 
 
 .containerhomepagecenterhome {
-    background-color: #ffffff;
     margin: 0;
     padding: 155px;
     display: flex;
@@ -24,11 +23,42 @@
 
 }
 
-.search-box{
-    background-color: #a8a6a6;
+.navbar{
+    background-color: #000; /* o qualsiasi colore tu voglia */
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
 
+.ticketplatformtitle {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+.nav-link {
+    color: white;
+
+
+}
+
+.search-box {
     flex-direction: column;
-   
+
+
+}
+
+.search-box.index {
+    background-color: #9b9b9b;
+
+}
+
+.search-box.edit {
+    background-color: #9b9b9b;
 
 }
 
@@ -51,12 +81,12 @@
     text-decoration: none;
 }
 
-.clicklinkhome.tickets{
+.clicklinkhome.tickets {
     background-color: rgb(241, 19, 19);
 
 }
 
-.clicklinkhome.operators{
+.clicklinkhome.operators {
     background-color: rgb(8, 146, 54);
 
 }
@@ -65,14 +95,7 @@
     background-color: #000000;
 }
 
-.ticketplatformtitle {
-    font-family: "Special Gothic Expanded One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    text-align: center;
-    font-size: 65px;
-    color: white;
-}
+
 
 .homepagebackground {
     background-color: rgb(245, 238, 238);
