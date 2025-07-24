@@ -1,9 +1,11 @@
 package org.lessons.java.spring.ticket_platform.controller;
 
+import org.lessons.java.spring.ticket_platform.model.Note;
 import org.lessons.java.spring.ticket_platform.model.Ticket;
 import org.lessons.java.spring.ticket_platform.repository.TicketRepository;
 import org.lessons.java.spring.ticket_platform.repository.UserRepository;
 import org.lessons.java.spring.ticket_platform.repository.CategoryRepository;
+import org.lessons.java.spring.ticket_platform.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -26,15 +28,18 @@ public class TicketController {
 
     private final CategoryRepository categoryRepository;
 
+    TicketController(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
+
     @Autowired
     private TicketRepository ticketRepository;
 
     @Autowired
     private UserRepository userRepository;
 
-    TicketController(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+    @Autowired
+    private NoteRepository noteRepository;
 
     @GetMapping({ "", "/" })
     public String index(Model model) {
@@ -47,8 +52,12 @@ public class TicketController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Integer id, Model model) {
-        Ticket ticket = ticketRepository.findById(id).orElse(null);
+        Ticket ticket = ticketRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found"));
+        List<Note> notes = noteRepository.findByTicket(ticket);
         model.addAttribute("ticket", ticket);
+        model.addAttribute("notes", notes);
+        model.addAttribute("newNote", new Note());
         return "tickets/show";
     }
 

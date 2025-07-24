@@ -21,8 +21,8 @@
 
 
                     <h5 class="mb-3 fw-bold">Operator:</h5>
-                    <span class="mb-3 btn btn-primary" aria-disabled="true"
-                        th:text="${ticket.operator.fullName}" th:href="@{/operators/{id}(id=${ticket.operator.id})}"></span>
+                    <span class="mb-3 save-btn" aria-disabled="true" th:text="${ticket.operator.fullName}"
+                        th:href="@{/operators/{id}(id=${ticket.operator.id})}"></span>
 
                     <h5 class="mb-3 fw-bold">Status:</h5>
                     <span class="mb-3" th:switch="${ticket.status}">
@@ -31,9 +31,15 @@
                         <span th:case="closed" class="badge closed" style="font-size:17px">Closed</span>
                     </span>
 
-
-                    <div class="mt-4">
-                        <a th:href="@{/tickets}" class="btn btn-secondary back-btn">Back in List</a>
+                    <!-- ! NOTES NOTES -->
+                    <div class="mt-3">
+                        <a th:href="@{'/tickets/' + ${ticket.id} + '/notes'}" title="View notes for ticket"
+                            class="save-btn">Notes List
+                        </a>
+                    </div>
+                    <!-- ! BACK IN LIST -->
+                    <div class="mt-2">
+                        <a th:href="@{/tickets}" class="btn btn-secondary back-btn">Back</a>
                     </div>
 
                 </div>

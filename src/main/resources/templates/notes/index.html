@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments/head :: head('Note Ticket')}"></head>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar('Ticket Platform')}"></nav>
+    
+    <main>
+        <div class="container mt-4">
+            <h1>Note's Ticket:</h1> <strong><span th:text="${ticket.title}"><h2></h2></span></strong>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Author</th>
+                        <th>Creation Date</th>
+                        <th>Text</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="note : ${notes}">
+                        <td th:text="${note.author.fullName}">Author</td>
+                        <td th:text="${#temporals.format(note.creationDate, 'dd/MM/yyyy HH:mm')}">Creation Date</td>
+                        <td th:text="${note.text}">Note Text</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a th:href="@{'/tickets/' + ${ticket.id}}" class="btn btn-secondary mt-3">Back</a>
+        </div>
+    </main>
+    
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+    <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
+</body>
+</html>
