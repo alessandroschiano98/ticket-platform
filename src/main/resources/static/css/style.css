@@ -3,6 +3,29 @@
     padding: 0;
 }
 
+input,
+select {
+    padding: 5px;
+    margin: 2px 2px;
+    border: 1px solid #ffffff;
+    border-radius: 15px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 15px;
+
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    justify-content: center;
+}
 
 .containerhomepagecenterhome {
     margin: 0;
@@ -108,29 +131,6 @@
 
 }
 
-input,
-select {
-    padding: 5px;
-    margin: 2px 2px;
-    border: 1px solid #ffffff;
-    border-radius: 15px;
-}
-
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 15px;
-
-}
-
-th,
-td {
-    padding: 8px;
-    text-align: left;
-    justify-content: center;
-}
 
 
 .badge {
