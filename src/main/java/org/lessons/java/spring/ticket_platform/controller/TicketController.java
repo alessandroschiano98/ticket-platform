@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.validation.Valid;
@@ -42,10 +43,18 @@ public class TicketController {
     private NoteRepository noteRepository;
 
     @GetMapping({ "", "/" })
-    public String index(Model model) {
-        List<Ticket> tickets = ticketRepository.findAll();
+    public String index(@RequestParam(name = "search", required = false) String search, Model model) {
+        List<Ticket> tickets;
+
+        if (search != null && !search.isEmpty()) {
+            tickets = ticketRepository.findByTitleContainingIgnoreCase(search);
+        } else {
+            tickets = ticketRepository.findAll();
+        }
+
         model.addAttribute("tickets", tickets);
         model.addAttribute("ticket", new Ticket());
+        model.addAttribute("search", search); 
 
         return "tickets/index";
     }

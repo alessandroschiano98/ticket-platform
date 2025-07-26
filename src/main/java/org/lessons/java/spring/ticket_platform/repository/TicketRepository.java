@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Integer> {
     List<Ticket> findByOperatorId(int id);
+    public List<Ticket> findByTitleContainingIgnoreCase(String title);
 }

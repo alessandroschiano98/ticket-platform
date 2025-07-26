@@ -10,6 +10,13 @@
 
     <div class="container mt-4 text-left">
         <h1><strong>Operators's List</strong></h1>
+        <!-- ! SEARCH A TICKET BY NAME -->
+    <div class="search-box index">
+        <form th:action="@{/operators}" method="get">
+            <input type="text" name="search" placeholder="Search by name..." th:value="${search}" />
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
 
         <table class="table">
             <thead>
@@ -29,8 +36,8 @@
                         <section class="buttonsbox">
                             <!-- ! DETAILS -->
                             <a class="buttons-box-icons" th:href="@{/operators/{id}(id=${operator.id})}">
-                                <img src="https://cdn-icons-png.flaticon.com/512/64/64572.png"
-                                    alt="Show info " width="18" />
+                                <img src="https://cdn-icons-png.flaticon.com/512/64/64572.png" alt="Show info "
+                                    width="18" />
                             </a>
                     </td>
                 </tr>

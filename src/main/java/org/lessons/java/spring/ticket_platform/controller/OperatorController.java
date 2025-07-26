@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 @Controller
@@ -24,9 +25,19 @@ public class OperatorController {
     private TicketRepository ticketRepository;
 
     @GetMapping({ "", "/" })
-    public String index(Model model) {
-        List<User> operators = userRepository.findByRolesNameIn(List.of("OPERATOR"));
+    public String index(@RequestParam(name = "search", required = false) String search, Model model) {
+        List<User> operators;
+
+        if (search != null && !search.isBlank()) {
+
+            operators = userRepository.findByRolesNameInAndFullNameContainingIgnoreCase(List.of("OPERATOR"), search);
+        } else {
+            operators = userRepository.findByRolesNameIn(List.of("OPERATOR"));
+        }
+
         model.addAttribute("operators", operators);
+        model.addAttribute("search", search);
+
         return "operators/index";
     }
 
@@ -37,7 +48,6 @@ public class OperatorController {
 
         List<Ticket> assignedTickets = ticketRepository.findByOperatorId(id);
         boolean isAvailable = assignedTickets.isEmpty();
-
 
         model.addAttribute("operator", operator);
         model.addAttribute("assignedTickets", assignedTickets);
