@@ -29,7 +29,6 @@ public class OperatorController {
         List<User> operators;
 
         if (search != null && !search.isBlank()) {
-
             operators = userRepository.findByRolesNameInAndFullNameContainingIgnoreCase(List.of("OPERATOR"), search);
         } else {
             operators = userRepository.findByRolesNameIn(List.of("OPERATOR"));
