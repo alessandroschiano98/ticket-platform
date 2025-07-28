@@ -9,33 +9,34 @@
     </header>
 
     <main>
-        <div class="containerhomepagecenter">
+        <div class="container mt-4">
             <section class="title row">
                 <div class="col-12">
                     <h1 class="text-left fw-bold mb-3">
                         Creating New Ticket
                     </h1>
                 </div>
+               <div class="search-box index">
                 <form th:action="@{/tickets/create}" th:object="${ticket}" method="post">
-                    <label for="title">Title:</label>
+                    <label for="title"><strong>Title:</strong></label>
                     <input type="text" id="title" th:field="*{title}" required />
 
 
-                    <label for="status">Status:</label>
+                    <label for="status"><strong>Status:</strong></label>
                     <select id="status" th:field="*{status}">
                         <option value="todo">To do</option>
                         <option value="inprogress">In Progress</option>
                         <option value="closed">Closed</option>
                     </select>
 
-                    <label for="category">Category:</label>
+                    <label for="category"><strong>Category:</strong></label>
                     <select id="category" th:field="*{category}">
                         <option value="" disabled selected>Select Category</option>
                         <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
                         </option>
                     </select>
 
-                    <label for="operator">Operator:</label>
+                    <label for="operator"><strong>Operator:</strong></label>
                     <select id="operator" th:field="*{operator}">
                         <option value="" disabled selected>Select Operator</option>
                         <option th:each="operator : ${operators}" th:value="${operator.id}"
@@ -44,10 +45,11 @@
                     </select>
 
 
-                    <button type="submit" class="save-btn">Done</button>
-                    <button type="reset" class="reset-btn">Reset</button>
-                    <a th:href="@{/tickets}" class="back-btn">Back</a>
+                    <button type="submit" class="save-btn"><strong>Done</strong></button>
+                    <button type="reset" class="reset-btn"><strong>Reset</strong></button>
+                    <a th:href="@{/tickets}" class="back-btn"><strong>Back</strong></a>
                 </form>
+               </div>
         </div>
     </main>
 

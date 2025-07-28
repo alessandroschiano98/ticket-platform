@@ -14,16 +14,17 @@
             <h1 class="mb-4"><strong>Ticket Details</strong></h1>
 
             <div class="d-flex justify-content-center align-items-center">
-
+                <!-- ! TITLE -->
                 <div class="card shadow p-4">
                     <h5 class="mb-3 fw-bold">Title:</h5>
                     <span class="mb-3" aria-disabled="true" th:text="${ticket.title}"></span>
 
-
+                    <!-- ! OPERATOR -->
                     <h5 class="mb-3 fw-bold">Operator:</h5>
-                    <span class="mb-3 save-btn" aria-disabled="true" th:text="${ticket.operator.fullName}"
-                        th:href="@{/operators/{id}(id=${ticket.operator.id})}"></span>
+                    <a class="mb-3 save-btn" aria-disabled="true" th:text="${ticket.operator.fullName}"
+                        th:href="@{/operators/{id}(id=${ticket.operator.id})}"></a>
 
+                    <!-- ! STATUS  -->
                     <h5 class="mb-3 fw-bold">Status:</h5>
                     <span class="mb-3" th:switch="${ticket.status}">
                         <span th:case="todo" class="badge todo" style="font-size:17px;">To Do</span>
@@ -31,20 +32,20 @@
                         <span th:case="closed" class="badge closed" style="font-size:17px">Closed</span>
                     </span>
 
-                    <!-- ! NOTES NOTES -->
-                    <div class="mt-3">
+                    <!-- ! NOTES -->
+                    <h5 class="mb-3 fw-bold">Notes:</h5>
+                    <div class="mt-1">
                         <a th:href="@{'/tickets/' + ${ticket.id} + '/notes'}" title="View notes for ticket"
-                            class="save-btn">Notes List
+                            class="noteslist-btn">Notes List
                         </a>
-                    </div>
-                    <!-- ! BACK IN LIST -->
-                    <div class="mt-2">
-                        <a th:href="@{/tickets}" class="btn btn-secondary back-btn">Back</a>
                     </div>
 
                 </div>
             </div>
-
+            <!-- ! BACK IN LIST -->
+            <div class="mt-3">
+                <a th:href="@{/tickets}" class="btn btn-secondary back-btn">Back</a>
+            </div>
         </div>
     </main>
 

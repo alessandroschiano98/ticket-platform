@@ -7,7 +7,7 @@ input,
 select {
     padding: 5px;
     margin: 2px 2px;
-    border: 1px solid #ffffff;
+    border: 1px solid #000000;
     border-radius: 15px;
 }
 
@@ -46,12 +46,19 @@ td {
 
 }
 
-.navbar{
-    background-color: #000;
+.navbar {
+    background-color: #000000;
     border: none;
     box-shadow: none;
     padding: 0;
     margin: 0;
+}
+
+
+.nav-link {
+    color: white;
+
+
 }
 
 .ticketplatformtitle {
@@ -63,25 +70,22 @@ td {
     color: white;
 }
 
-.nav-link {
-    color: white;
-
-
-}
 
 .search-box {
-    flex-direction: column;
-
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    flex-direction: column
 
 }
 
 .search-box.index {
-    background-color: #9b9b9b;
+    background-color: #d1d1d1;
 
 }
 
 .search-box.edit {
-    background-color: #9b9b9b;
+    background-color: #d1d1d1;
 
 }
 
@@ -97,7 +101,7 @@ td {
 
 
 .clicklinkhome {
-    color: black;
+    color: #252323;
     text-align: center;
     text-decoration: none;
     border-radius: 15px;
@@ -114,23 +118,10 @@ td {
 
 }
 
-.navbar-background {
-    background-color: #000000;
-}
-
-
 
 .homepagebackground {
     background-color: rgb(245, 238, 238);
 }
-
-.search-box {
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-
-}
-
 
 
 .badge {
@@ -168,7 +159,7 @@ td {
 
 
 .search-btn {
-    background-color: #ee4630;
+    background-color: #0d901c;
     border: none;
     color: white;
     padding: 5px 15px;
@@ -176,7 +167,9 @@ td {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 12px
+    border-radius: 12px;
+    font-weight: bold;
+
 }
 
 .save-btn {
@@ -188,7 +181,8 @@ td {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 12px
+    font-weight: bold;
+    border-radius: 12px;
 }
 
 .reset-btn {
@@ -200,12 +194,13 @@ td {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    font-weight: bold;
     border-radius: 12px
 }
 
 
 .back-btn {
-    background-color: #7a7a7a;
+    background-color: #939393;
     border: none;
     color: white;
     padding: 5px 15px;
@@ -213,9 +208,23 @@ td {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 12px
+    border-radius: 12px;
+    font-weight: bold;
 }
 
+
+.noteslist-btn {
+    background-color: #000000;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px
+}
 
 .notes-btn,
 .view-btn {
@@ -223,8 +232,9 @@ td {
     background: transparent;
     border: none;
     padding: 5px 15px;
-    border-color: lightgrey;
-    border-radius: 12px
+    border-color: #A99985;
+    border-radius: 12px;
+    font-weight: bold;
 }
 
 .buttons-box-icons {
@@ -243,7 +253,7 @@ td {
     left: 0;
     width: 100%;
     height: 60px;
-    background-color: #222;
+    background-color: #000000;
     color: #ffffff;
     display: flex;
     flex-direction: column;
