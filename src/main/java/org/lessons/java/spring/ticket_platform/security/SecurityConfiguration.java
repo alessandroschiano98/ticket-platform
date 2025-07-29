@@ -2,12 +2,11 @@ package org.lessons.java.spring.ticket_platform.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.config.Customizer;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -18,13 +17,32 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(requests -> requests
-                .requestMatchers("/books/create", "/books/edit/**").hasAuthority("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/books/**").hasAuthority("ADMIN")
-                .requestMatchers("/categories", "/categories/**").hasAuthority("ADMIN")
-                .requestMatchers("/books", "/books/**").hasAnyAuthority("USER", "ADMIN")
-                .requestMatchers("/**").permitAll())
-                .formLogin(Customizer.withDefaults());
-                return http.build();
+                // ! STATIC RESOURCES
+                .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+                // ! ADMIN ROUTES
+                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+
+                // ! OPERATOR ROUTES
+                .requestMatchers("/operator/**").hasAnyAuthority("OPERATOR", "ADMIN")
+
+                // ! SHARED ROUTES
+                .requestMatchers("/tickets", "/tickets/**").hasAnyAuthority("OPERATOR", "ADMIN")
+
+                // ! PUBLIC ROUTES
+                .requestMatchers("/login").permitAll()
+
+                .anyRequest().authenticated())
+
+                // ! OTHERS
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/", true)
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/login?logout")
+                        .permitAll());
+
+        return http.build();
     }
 
     @Bean
@@ -41,8 +59,8 @@ public class SecurityConfiguration {
 
     @Bean
     PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder(); 
-   
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
     }
 
 }
