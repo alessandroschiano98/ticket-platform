@@ -13,7 +13,6 @@ select {
 
 
 table {
-    width: 100%;
     border-collapse: collapse;
     background: white;
     border-radius: 15px;
@@ -86,22 +85,22 @@ td {
 }
 
 
+
+
 .search-box {
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 20px;
-    flex-direction: column
 
 }
 
 .search-box.index {
-    background-color: #d1d1d1;
+    background-color: #f7f7f7;
 
 }
 
 .search-box.edit {
-    background-color: #d1d1d1;
-
+    background-color: #f7f7f7;
 }
 
 
@@ -173,7 +172,6 @@ td {
 .index-btn {
     width: 25px;
     height: 25px;
-    filter: brightness(0%) invert(0%);
 }
 
 
@@ -189,6 +187,10 @@ td {
     border-radius: 12px;
     font-weight: bold;
 
+}
+
+.search-btn:hover{
+    background-color: #46914f;
 }
 
 .ticketshowtitle-btn {
@@ -217,6 +219,13 @@ td {
     border-radius: 12px;
 }
 
+.save-btn:hover {
+    background-color: #5c59f0; 
+    cursor: pointer;
+}
+
+
+
 .reset-btn {
     background-color: #ffa42c;
     border: none;
@@ -228,6 +237,11 @@ td {
     font-size: 16px;
     font-weight: bold;
     border-radius: 12px
+}
+
+.reset-btn:hover {
+    background-color:#b88139; 
+    cursor: pointer;
 }
 
 
@@ -244,6 +258,11 @@ td {
     font-weight: bold;
 }
 
+.back-btn:hover {
+    background-color:#000000; 
+    cursor: pointer;
+}
+
 .login-btn,
 .noteslist-btn {
     background-color: #000000;
@@ -258,6 +277,19 @@ td {
     font-weight: bold;
 }
 
+.noteslist-btn:hover {
+    background-color:#ffffff;
+    color: black;
+    cursor: pointer;
+}
+
+
+.login-btn:hover {
+    background-color:#ffffff;
+    color: black;
+    cursor: pointer;
+}
+
 
 
 .notes-btn,
@@ -270,6 +302,8 @@ td {
     border-radius: 12px;
     font-weight: bold;
 }
+
+
 
 .buttons-box-icons {
     background: none;

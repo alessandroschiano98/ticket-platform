@@ -35,11 +35,11 @@
             <h2 class="text-center text-primary" th:unless="${notes.size() > 0}">
                 There are no notes available at this moment
             </h2>
-            <a th:href="@{/tickets/{id}/notes/create(id=${ticket.id})}" class="btn btn-success mb-3">
-                <strong>Add New Note</strong>
+            <a th:href="@{/tickets/{id}/notes/create(id=${ticket.id})}" class="search-btn">
+               Add New Note
             </a>
             
-            <a th:href="@{'/tickets/' + ${ticket.id}}" class="btn btn-secondary mb-3">Back</a>
+            <a th:href="@{'/tickets/' + ${ticket.id}}" class="back-btn">Back</a>
 
         </div>
     </main>

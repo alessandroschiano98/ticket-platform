@@ -27,7 +27,7 @@
                         <!-- ! OPERATOR -->
                         <div class="d-flex flex-column">
                             <h5 class="fw-bold">Operator:</h5>
-                            <a class="save-btn" aria-disabled="true" th:text="${ticket.operator.fullName}"
+                            <a class="save-btn" th:text="${ticket.operator.fullName}"
                                 th:href="@{/operators/{id}(id=${ticket.operator.id})}"></a>
                         </div>
 
