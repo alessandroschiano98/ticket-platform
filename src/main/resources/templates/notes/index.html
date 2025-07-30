@@ -8,11 +8,11 @@
 
 
     <main>
-        <div class="container mt-4">
-            <h1>Note's Ticket:</h1> <span><strong>
-                <a th:href="@{'/tickets/' + ${ticket.id}}" class="btn btn-danger mt-3 mb-3"
+        <div class="container mt-5">
+            <h1><strong>Note's Ticket:</strong></h1> <span>
+                <a th:href="@{'/tickets/' + ${ticket.id}}" class="problems-btn"
                         th:text="${ticket.title}"></a>
-            </strong></span>
+            </span>
 
             <table class="table table-striped">
                 <thead>

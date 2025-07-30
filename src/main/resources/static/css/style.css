@@ -37,9 +37,6 @@ td {
     padding: 155px;
     display: flex;
     justify-content: space-around;
-
-
-
 }
 
 .containerhomepagecenterlogin {
@@ -47,8 +44,6 @@ td {
     margin: 0;
     padding: 180px;
     text-align: center;
-
-
 }
 
 .containerhomepagecentershow {
@@ -56,8 +51,6 @@ td {
     margin: 0;
     padding: 15px;
     text-align: center;
-
-
 }
 
 .navbar {
@@ -71,8 +64,6 @@ td {
 
 .nav-link {
     color: white;
-
-
 }
 
 .ticketplatformtitle {
@@ -85,13 +76,10 @@ td {
 }
 
 
-
-
 .search-box {
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 20px;
-
 }
 
 .search-box.index {
@@ -109,8 +97,6 @@ td {
     margin: 0;
     padding: 85px;
     text-align: center;
-
-
 }
 
 
@@ -124,12 +110,10 @@ td {
 
 .clicklinkhome.tickets {
     background-color: rgb(241, 19, 19);
-
 }
 
 .clicklinkhome.operators {
     background-color: rgb(8, 146, 54);
-
 }
 
 
@@ -186,7 +170,6 @@ td {
     font-size: 16px;
     border-radius: 12px;
     font-weight: bold;
-
 }
 
 .search-btn:hover{
@@ -241,6 +224,25 @@ td {
 
 .reset-btn:hover {
     background-color:#b88139; 
+    cursor: pointer;
+}
+
+
+.problems-btn {
+    background-color: #ff0000;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px
+}
+
+.problems-btn:hover {
+    background-color:#ff8383; 
     cursor: pointer;
 }
 

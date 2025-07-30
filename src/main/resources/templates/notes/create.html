@@ -32,16 +32,15 @@
                                         th:text="${user.fullName}">
                                 </option>
                             </select>
-                            
-                            
                         </div>
+
                          <!-- ! TEXT  -->
-                    
                         <div class="mb-3">
                             <label for="text" class="form-label"><strong>Text:</strong></label>
                             <textarea id="text" th:field="*{text}" class="form-control" rows="4" required></textarea>
                         </div>
                     
+                        <!-- ! DONE & RESET  -->
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary"><strong>Done</strong></button>
                             <button type="reset" class="btn btn-warning"><strong>Reset</strong></button>

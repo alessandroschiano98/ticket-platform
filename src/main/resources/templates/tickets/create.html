@@ -47,12 +47,11 @@
 
                         <button type="submit" class="save-btn">Done</button>
                         <button type="reset" class="reset-btn">Reset</button>
-                        <a th:href="@{/tickets}" class="back-btn">Back</a>
-
                     </form>
-            
                 </div>
+                <div> <a th:href="@{/tickets}" class="back-btn">Back</a></div>
             </section>
+        </section>
     </main>
 
     <th:block th:replace="~{fragments/footer :: footer}"></th:block>
