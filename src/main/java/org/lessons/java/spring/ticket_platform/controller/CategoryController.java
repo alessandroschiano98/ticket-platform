@@ -23,6 +23,7 @@ public class CategoryController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+    
     @Autowired
     private TicketRepository ticketRepository;
 

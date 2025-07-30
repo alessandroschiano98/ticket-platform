@@ -35,7 +35,9 @@ public class Note {
 
     @PrePersist
     protected void onCreate() {
-        this.creationDate = LocalDateTime.now();
+        if (creationDate == null) {
+            creationDate = LocalDateTime.now();
+        }
     }
 
     public Integer getId() {

@@ -49,7 +49,9 @@ public class Ticket {
 
     @PrePersist
     protected void onCreate() {
-        this.creationDate = LocalDateTime.now();
+        if (creationDate == null) {
+            creationDate = LocalDateTime.now();
+        }
     }
 
     public LocalDateTime getCreationDate() {

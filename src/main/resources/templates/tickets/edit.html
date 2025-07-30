@@ -25,6 +25,12 @@
                         </option>
                     </select>
 
+                        <label for="creationDate"><strong>Created on:</strong></label>
+                        <input type="text"
+                               id="creationDate"
+                               th:value="${#temporals.format(ticket.creationDate, 'dd/MM/yyyy HH:mm')}"
+                               disabled />
+
                     <label for="status"><strong>Status</strong></label>
                     <select id="status" th:field="*{status}">
                         <option value="" disabled selected>Select Status</option>
