@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -32,6 +33,11 @@ public class Note {
     @JoinColumn(name = "user_id")
     private User author;
 
+    @PrePersist
+    protected void onCreate() {
+        this.creationDate = LocalDateTime.now();
+    }
+
     public Integer getId() {
         return this.id;
     }
@@ -55,7 +61,6 @@ public class Note {
     public void setAuthor(User author) {
         this.author = author;
     }
-  
 
     public String getText() {
         return this.text;
@@ -72,7 +77,5 @@ public class Note {
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
-
-    
 
 }

@@ -140,30 +140,34 @@ td {
 
 
 .badge {
-    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     font-weight: bold;
+    border-radius: 12px;
 }
 
-.badge.status {
-    background-color: #b8950d;
-    color: #ffffff;
-
-
-}
 
 .badge.todo {
     background-color: #b8950d;
     color: #ffffff;
+
 }
 
 .badge.inprogress {
     background-color: #027238;
     color: #ffffff;
+
 }
 
 .badge.closed {
     background-color: #ff2600;
     color: #ffffff;
+
 }
 
 .index-btn {
@@ -185,6 +189,19 @@ td {
     border-radius: 12px;
     font-weight: bold;
 
+}
+
+.ticketshowtitle-btn {
+    background-color: #ff0505;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px;
 }
 
 .save-btn {
@@ -237,8 +254,11 @@ td {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 12px
+    border-radius: 12px;
+    font-weight: bold;
 }
+
+
 
 .notes-btn,
 .view-btn {

@@ -21,7 +21,7 @@
                         <!-- ! TITLE -->
                         <div class="d-flex flex-column">
                             <h5 class="fw-bold">Title:</h5>
-                            <span th:text="${ticket.title}"></span>
+                            <strong class="ticketshowtitle-btn"><span th:text="${ticket.title}"></span></strong>
                         </div>
 
                         <!-- ! OPERATOR -->
@@ -46,7 +46,7 @@
                         <!-- ! NOTES -->
                         <div class="d-flex flex-column">
                             <h5 class="fw-bold">Notes:</h5>
-                            <a th:href="@{'/tickets/' + ${ticket.id} + '/notes'}" class="noteslist-btn">Notes List</a>
+                            <a th:href="@{/tickets/{id}/notes(id=${ticket.id})}" class="noteslist-btn">View List</a>
                         </div>
 
                     </div>

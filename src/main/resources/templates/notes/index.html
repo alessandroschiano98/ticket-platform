@@ -9,14 +9,15 @@
 
     <main>
         <div class="container mt-4">
-            <h1>Note's Ticket:</h1> <strong>
-                <h1><a th:href="@{'/tickets/' + ${ticket.id}}" class="btn btn-danger mt-3"
+            <h1>Note's Ticket:</h1> <span><strong>
+                <a th:href="@{'/tickets/' + ${ticket.id}}" class="btn btn-danger mt-3 mb-3"
                         th:text="${ticket.title}"></a>
-            </strong></h1>
+            </strong></span>
 
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Author</th>
                         <th>Creation Date</th>
                         <th>Text</th>
@@ -24,14 +25,22 @@
                 </thead>
                 <tbody>
                     <tr th:each="note : ${notes}">
+                        <td th:text="${note.id}">Author</td>
                         <td th:text="${note.author.fullName}">Author</td>
                         <td th:text="${#temporals.format(note.creationDate, 'dd/MM/yyyy HH:mm')}">Creation Date</td>
                         <td th:text="${note.text}">Note Text</td>
                     </tr>
                 </tbody>
             </table>
+            <h2 class="text-center text-primary" th:unless="${notes.size() > 0}">
+                There are no notes available at this moment
+            </h2>
+            <a th:href="@{/tickets/{id}/notes/create(id=${ticket.id})}" class="btn btn-success mb-3">
+                <strong>Add New Note</strong>
+            </a>
+            
+            <a th:href="@{'/tickets/' + ${ticket.id}}" class="btn btn-secondary mb-3">Back</a>
 
-            <a th:href="@{'/tickets/' + ${ticket.id}}" class="btn btn-secondary mt-3">Back</a>
         </div>
     </main>
 
