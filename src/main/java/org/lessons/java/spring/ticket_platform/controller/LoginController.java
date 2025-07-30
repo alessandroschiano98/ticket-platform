@@ -11,7 +11,7 @@ public class LoginController {
     @GetMapping("/login") 
     public String loginPage(@RequestParam(name = "logout", required = false) String logout, Model model) {
         if (logout != null) {
-            model.addAttribute("message", "Successful login.");
+            model.addAttribute("message", "Successful logout.");
         }
         return "pages/login";
     }

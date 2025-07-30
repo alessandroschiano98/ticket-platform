@@ -5,18 +5,21 @@
 
 <body>
     <main>
-        <div class="containerhomepagecentershow">
-            <h1 class="mb-4"><strong>Welcome </strong></h1>
-
-            <div th:if="${message}" class="alert alert-success" role="alert">
-                <p th:text="${message}"></p>
+        <div class="containerhomepagecenterlogin">
+            <h1 class="mb-4"><strong>Login</strong></h1>
+            <div class="containerinfologin">
+                <div th:if="${message}" class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                    <p th:text="${message}" class=""></p>
+    
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+    
+                <form th:action="@{/login}" method="post">
+                    <input type="text" name="username" placeholder="Username" required />
+                    <input type="password" name="password" placeholder="Password" required />
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
             </div>
-
-            <form th:action="@{/login}" method="post">
-                <input type="text" name="username" placeholder="Username" required />
-                <input type="password" name="password" placeholder="Password" required />
-                <button type="submit" class="btn">Login</button>
-            </form>
         </div>
     </main>
 

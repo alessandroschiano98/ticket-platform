@@ -9,28 +9,19 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- ! FAST LINKS NAVBAR  -->
+           <section class="d-flex ">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                    <li class="nav-list">
                         <a class="nav-link" th:href="@{/tickets}">Tickets</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-list">
                         <a class="nav-link" th:href="@{/operators}">Operators</a>
                     </li>
                 </ul>
             </div>
-            <!-- ! LOGIN/LOGOUT INTERFACE NAVBAR -->
-            <div class="user-details" sec:authorize="isAuthenticated()">
-                Logged user: <span sec:authentication="name" class="me-3"></span>
-                Roles: <span sec:authentication="principal.authorities" class="me-3"></span>
-                <form th:action="@{/logout}" method="post" style="display:inline;">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                    <button type="submit" class="btn btn-primary">Logout</button>
-                </form>
-            </div>
-            <div sec:authorize="!isAuthenticated()">
-                <a th:href="@{/login}" class="btn btn-secondary">Login</a>
-            </div>
+    
+           </section>
             
 
         </div>

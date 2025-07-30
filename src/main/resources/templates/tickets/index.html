@@ -29,6 +29,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Creation Date</th>
                             <th>Category</th>
                             <th>Status</th>
                             <th>Operator</th>
@@ -39,6 +40,7 @@
                         <tr th:each="ticket : ${tickets}" th:object="${ticket}">
                             <td>[[*{id}]]</td>
                             <td>[[*{title}]]</td>
+                            <td th:text="${#temporals.format(ticket.creationDate, 'dd/MM/yyyy HH:mm')}">Creation Date</td>
                             <td th:text="${ticket.category != null} ? ${ticket.category.name} : 'None'"></td>
                             <td class="#" th:switch="${ticket.status}">
                                 <span th:case="todo" class="badge todo">To Do</span>

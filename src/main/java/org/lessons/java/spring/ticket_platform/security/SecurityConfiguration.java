@@ -2,6 +2,7 @@ package org.lessons.java.spring.ticket_platform.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,14 +20,16 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(requests -> requests
                 // ! STATIC RESOURCES
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+
                 // ! ADMIN ROUTES
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
 
                 // ! OPERATOR ROUTES
-                .requestMatchers("/operator/**").hasAnyAuthority("OPERATOR", "ADMIN")
+                .requestMatchers("/operators/**").hasAnyAuthority("OPERATOR", "ADMIN")
 
                 // ! SHARED ROUTES
                 .requestMatchers("/tickets", "/tickets/**").hasAnyAuthority("OPERATOR", "ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/tickets/**").hasAuthority("ADMIN")
 
                 // ! PUBLIC ROUTES
                 .requestMatchers("/login").permitAll()
