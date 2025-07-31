@@ -9,7 +9,7 @@
     </header>
 
     <main>
-        <section class="container mt-4">
+        <section class="container mt-5">
             <section class="title row">
                 <div class="col-12">
                     <h1 class="text-left fw-bold mb-3">
@@ -34,9 +34,8 @@
 
                         <!-- ! CREATED ON -->
                         <label for="creationDateDisplay"><strong>Created on:</strong></label>
-                        <input type="text" id="creationDateDisplay"
-                            th:value="${#temporals.format(ticket.creationDate, 'dd/MM/yyyy HH:mm')}" disabled />
-
+                        <td th:text="${#temporals.format(ticket.creationDate, 'dd/MM/yyyy HH:mm')}">Creation Date</td>
+                    
                         <input type="hidden" th:field="*{creationDate}" />
 
                         <!-- ! STATUS -->

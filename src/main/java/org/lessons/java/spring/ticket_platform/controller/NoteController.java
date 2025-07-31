@@ -10,9 +10,11 @@ import org.lessons.java.spring.ticket_platform.repository.NoteRepository;
 import org.lessons.java.spring.ticket_platform.repository.TicketRepository;
 import org.lessons.java.spring.ticket_platform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 public class NoteController {
@@ -60,6 +62,40 @@ public class NoteController {
         note.setCreationDate(LocalDateTime.now());
         noteRepository.save(note);
         return "redirect:/tickets/" + note.getTicket().getId() + "/notes";
+    }
+
+    @GetMapping("/notes/edit/{id}")
+    public String editNote(@PathVariable("id") Integer id, Model model) {
+        Note note = noteRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Note not found"));
+
+        model.addAttribute("note", note);
+        model.addAttribute("users", userRepository.findAll());
+        return "notes/edit";
+    }
+
+    @PostMapping("/notes/update")
+    public String updateNote(@ModelAttribute Note note, @RequestParam Integer author) {
+        User user = userRepository.findById(author).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid author ID");
+        }
+
+        note.setAuthor(user);
+        noteRepository.save(note);
+
+        return "redirect:/tickets/" + note.getTicket().getId() + "/notes";
+    }
+
+    @PostMapping("/notes/delete/{id}")
+    public String deleteNote(@PathVariable("id") Integer id) {
+        Note note = noteRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Note not found"));
+
+        Integer ticketId = note.getTicket().getId();
+        noteRepository.delete(note);
+
+        return "redirect:/tickets/" + ticketId + "/notes";
     }
 
 }

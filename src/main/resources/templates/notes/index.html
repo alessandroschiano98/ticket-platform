@@ -9,11 +9,10 @@
 
     <main>
         <div class="container mt-5">
-            <h1><strong>Note's Ticket:</strong></h1> <span>
-                <a th:href="@{'/tickets/' + ${ticket.id}}" class="problems-btn"
-                        th:text="${ticket.title}"></a>
-            </span>
-
+            <h1><strong>Note's Ticket:</strong></h1> 
+            <div>
+                <strong>Ticket Assigned: </strong><a th:href="@{'/tickets/' + ${ticket.id}}" class="problems-btn" th:text="${ticket.title}"></a>
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -21,6 +20,7 @@
                         <th>Author</th>
                         <th>Creation Date</th>
                         <th>Text</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +29,54 @@
                         <td th:text="${note.author.fullName}">Author</td>
                         <td th:text="${#temporals.format(note.creationDate, 'dd/MM/yyyy HH:mm')}">Creation Date</td>
                         <td th:text="${note.text}">Note Text</td>
+                        <td>
+                            <section class="buttonsbox">
+                                <!-- ! EDIT -->
+                                <a class="buttons-box-icons" th:href="@{/notes/edit/{id}(id=${note.id})}">
+                                    <img src="https://uxwing.com/wp-content/themes/uxwing/download/editing-user-action/edit-icon.png"
+                                        alt="Click to delete" width="18" />
+                                </a>
+                                <!-- ! DELETE opens modal -->
+                                <button class="buttons-box-icons" data-bs-toggle="modal"
+                                    th:data-bs-target="'#delete-modal-' + ${note.id}">
+                                    <img src="https://www.svgrepo.com/show/31676/delete-button.svg"
+                                        alt="Click to delete" width="17" />
+                                </button>
+
+                                <!-- ! MODAL(DELETE) -->
+                                <div class="modal fade" th:id="'delete-modal-' + ${note.id}" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                                    Deleting <strong>"[[${note.author}]]"</strong>
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>
+                                                    Are you sure to eliminate this note?
+                                                    <strong>"[[${note.author}]]"</strong> (ID:
+                                                    [[${note.id}]])
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <form th:action="@{/tickets/delete/{id}(id=${ticket.id})}" method="post"
+                                                    class="d-inline">
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </td>
+
                     </tr>
                 </tbody>
             </table>
@@ -36,9 +84,9 @@
                 There are no notes available at this moment
             </h2>
             <a th:href="@{/tickets/{id}/notes/create(id=${ticket.id})}" class="search-btn">
-               Add New Note
+                Add New Note
             </a>
-            
+
             <a th:href="@{'/tickets/' + ${ticket.id}}" class="back-btn">Back</a>
 
         </div>
