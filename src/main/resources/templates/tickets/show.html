@@ -11,9 +11,9 @@
     <main>
         <div class="containerhomepagecentershow">
 
-            <h1 class="mb-4 mt-5"><strong>Ticket Details</strong></h1>
+            <h1 class="mb-4 mt-2"><strong>Ticket Details</strong></h1>
 
-            <div class="d-flex justify-content-center align-items-start">
+            <div class="d-flex justify-content-center">
                 <div class="card shadow p-4">
 
                     <div class="d-flex flex-wrap gap-5">
@@ -22,6 +22,13 @@
                         <div class="d-flex flex-column">
                             <h5 class="fw-bold">Title:</h5>
                             <strong class="ticketshowtitle-btn"><span th:text="${ticket.title}"></span></strong>
+                        </div>
+
+                        <!-- ! CATEGORY -->
+                        <div class="d-flex flex-column">
+                            <h5 class="fw-bold">Category:</h5>
+                            <a class="category-btn"
+                                th:text="${ticket.category != null} ? ${ticket.category.name} : 'None'"></a>
                         </div>
 
                         <!-- ! OPERATOR -->
@@ -41,13 +48,40 @@
                                 <span th:case="closed" class="badge closed" style="font-size:17px">Closed</span>
                             </span>
                         </div>
-                        <!-- ! CREATION DATE -->
 
-                        <!-- ! NOTES -->
-                        <div class="d-flex flex-column">
-                            <h5 class="fw-bold">Notes:</h5>
-                            <a th:href="@{/tickets/{id}/notes(id=${ticket.id})}" class="noteslist-btn">View List</a>
-                        </div>
+
+
+                    </div>
+                    <div class="container mt-5">
+                        <h1><strong>Note's:</strong></h1>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Author</th>
+                                    <th>Creation Date</th>
+                                    <th>Text</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="note : ${notes}">
+                                    <td th:text="${note.id}">Id Author</td>
+                                    <td th:text="${note.author.fullName}">Author</td>
+                                    <td th:text="${#temporals.format(note.creationDate, 'dd/MM/yyyy HH:mm')}">Creation
+                                        Date</td>
+                                    <td th:text="${note.text}">Note Text</td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5 class="text-center text-primary" th:unless="${notes.size() > 0}">
+                            There are no notes available at this moment
+                        </h5>
+                        <a th:href="@{/tickets/{id}/notes/create(id=${ticket.id})}" class="search-btn mt-2">
+                            Add New Note
+                        </a>
+                        <a th:href="@{/tickets/{id}/notes(id=${ticket.id})}" class="noteslist-btn">View List</a>
 
                     </div>
                 </div>

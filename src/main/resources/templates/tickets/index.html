@@ -19,7 +19,9 @@
                     <input type="text" name="search" placeholder="Search by title..." th:value="${search}" />
                     <button type="submit" class="search-btn">Search</button>
                     <!-- ! CREATE NEW TICKET -->
-                    <a th:href="@{/tickets/create}" class="save-btn">Create new ticket</a>
+                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/tickets/create}" class="save-btn">Create new ticket</a>
+
+
                 </form>
             </div>
 

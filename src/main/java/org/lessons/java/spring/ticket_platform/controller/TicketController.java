@@ -112,6 +112,7 @@ public class TicketController {
             model.addAttribute("operators", userRepository.findAll());
             return "/ticket/edit";
         }
+        
         ticketRepository.save(formTicket);
 
         return "redirect:/tickets";

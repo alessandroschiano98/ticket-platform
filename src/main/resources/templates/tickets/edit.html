@@ -38,6 +38,7 @@
                             <input type="text" 
                                    th:value="${#temporals.format(ticket.creationDate, 'dd/MM/yyyy HH:mm')}" 
                                    disabled />
+                                   <input type="hidden" th:field="*{creationDate}" />
                           </td>
                           
 

@@ -11,7 +11,11 @@
     <main>
         <div class="containerhomepagecenterhome">
 
-            <h1>Welcome<span th:text="${fullName}"></span></h1>
+            <div class="text-center">
+                <h1><strong>Welcome</strong></h1>
+                <h2> <span th:if="${user != null}" th:text="${user.fullName}"></span></h2>
+            </div>
+
         </div>
     </main>
 
