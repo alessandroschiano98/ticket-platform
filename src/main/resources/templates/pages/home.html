@@ -11,16 +11,7 @@
     <main>
         <div class="containerhomepagecenterhome">
 
-            <a th:href="@{/tickets}" class="clicklinkhome">
-                <h1>
-                   Tickets 
-                </h1>
-            </a>
-            <a th:href="@{/operators}" class="clicklinkhome">
-                <h1>
-                   Operators
-                </h1>
-            </a>
+            <h1>Welcome <span th:text="${fullName}"></span></h1>
         </div>
     </main>
 
