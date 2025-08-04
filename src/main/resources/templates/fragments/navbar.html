@@ -15,7 +15,7 @@
                     <li class="nav-list">
                         <a class="nav-link" th:href="@{/tickets}">Tickets</a>
                     </li>
-                    <li class="nav-list">
+                    <li class="nav-list" th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                         <a class="nav-link" th:href="@{/operators}">Operators</a>
                     </li>
                 </ul>

@@ -40,7 +40,8 @@
                         <tr th:each="ticket : ${tickets}" th:object="${ticket}">
                             <td>[[*{id}]]</td>
                             <td>[[*{title}]]</td>
-                            <td><span th:text="${#temporals.format(ticket.creationDate, 'dd/MM/yyyy HH:mm')}"></span></td>
+                            <td><span th:text="${#temporals.format(ticket.creationDate, 'dd/MM/yyyy HH:mm')}"></span>
+                            </td>
                             <td th:text="${ticket.category != null} ? ${ticket.category.name} : 'None'"></td>
                             <td class="#" th:switch="${ticket.status}">
                                 <span th:case="todo" class="badge todo">To Do</span>
@@ -105,12 +106,12 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="mt-2">
-                    <a th:href="@{/}" class="btn btn-secondary back-btn">Back</a>
-                </div>
                 <h2 class="text-center text-primary" th:unless="${tickets.size() > 0}">
                     There are no tickets available at this moment
                 </h2>
+                <div class="mt-2">
+                    <a th:href="@{/}" class="btn btn-secondary back-btn">Back</a>
+                </div>
             </section>
         </div>
     </main>

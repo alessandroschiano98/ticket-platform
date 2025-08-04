@@ -25,22 +25,24 @@ public class SecurityConfiguration {
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
 
                 // ! OPERATOR ROUTES
-                .requestMatchers("/operators/**").hasAnyAuthority("OPERATOR", "ADMIN")
+                .requestMatchers("/operators/**").hasAnyAuthority("ADMIN")
 
                 // ! SHARED ROUTES
-                .requestMatchers("/tickets", "/tickets/**").hasAnyAuthority("OPERATOR", "ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/tickets/**").hasAuthority("ADMIN")
+                .requestMatchers("/tickets", "/tickets/**").hasAnyAuthority("ADMIN", "OPERATOR")
+                .requestMatchers(HttpMethod.POST, "/tickets/**").hasAuthority("ADMIN")
 
                 // ! PUBLIC ROUTES
                 .requestMatchers("/login").permitAll()
 
                 .anyRequest().authenticated())
 
-                // ! OTHERS
+                // ! LOGIN CONFIG
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
                         .permitAll())
+
+                // ! LOGOUT CONFIG
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login?logout")
                         .permitAll());
