@@ -50,6 +50,8 @@ public class SecurityConfiguration {
         return http.build();
     }
 
+    // ! USER DETAILS (DATABASE USERS, USER DATABASE RECOVERY & PASSWORD CRIPTED ENCODER  )
+
     @Bean
     DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService());
